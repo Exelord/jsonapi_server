@@ -1,7 +1,7 @@
 require 'test_helper'
 
-class JsonapiServer::Test < ActiveSupport::TestCase
+class JSONAPIServer::Test < ActiveSupport::TestCase
   test "truth" do
-    assert_kind_of Module, JsonapiServer
+    assert_kind_of Module, JSONAPIServer
   end
 end

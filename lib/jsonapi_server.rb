@@ -1,3 +1,3 @@
-module JsonapiServer
+module JSONAPIServer
   # Your code goes here...
 end

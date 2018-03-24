@@ -1,4 +1,4 @@
-# JsonapiServer
+# JSONAPIServer
 Short description and motivation.
 
 ## Usage
