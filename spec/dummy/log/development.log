@@ -1,0 +1,120 @@
+Started GET "/" for ::1 at 2018-03-24 16:07:59 +0100
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (4.8ms)
+Completed 200 OK in 209ms (Views: 11.9ms)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20180324181938)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180324181938"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-03-24 18:20:08.078187"], ["updated_at", "2018-03-24 18:20:08.078187"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2018-03-26 20:01:13.951053"], ["updated_at", "2018-03-26 20:01:13.951053"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2018-03-26 20:01:17.911894"], ["updated_at", "2018-03-26 20:01:17.911894"]]
+  [1m[35m (2.7ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for ::1 at 2018-03-26 23:19:41 +0200
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (3.6ms)
+Completed 200 OK in 17ms (Views: 12.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2018-03-26 23:19:51 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (2.6ms)
+Completed 200 OK in 7ms (Views: 4.8ms)
+
+
+Started GET "/" for ::1 at 2018-03-26 23:19:52 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (2.5ms)
+Completed 200 OK in 6ms (Views: 4.6ms)
+
+
+Started GET "/" for ::1 at 2018-03-26 23:19:53 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (2.4ms)
+Completed 200 OK in 7ms (Views: 4.5ms)
+
+
+Started GET "/" for ::1 at 2018-03-26 23:19:53 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (2.4ms)
+Completed 200 OK in 6ms (Views: 4.4ms)
+
+
+Started GET "/" for ::1 at 2018-03-26 23:19:53 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (2.8ms)
+Completed 200 OK in 7ms (Views: 5.3ms)
+
+
+Started GET "/" for ::1 at 2018-03-26 23:19:54 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (2.5ms)
+Completed 200 OK in 7ms (Views: 4.6ms)
+
+
+Started GET "/" for ::1 at 2018-03-26 23:19:54 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (2.7ms)
+Completed 200 OK in 7ms (Views: 5.0ms)
+
+
+Started GET "/" for ::1 at 2018-03-26 23:19:54 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (2.6ms)
+Completed 200 OK in 8ms (Views: 5.2ms)
+
+
+Started GET "/" for ::1 at 2018-03-26 23:19:54 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (3.8ms)
+Completed 200 OK in 9ms (Views: 6.6ms)
+
+
+Started GET "/" for ::1 at 2018-03-26 23:19:55 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/maciej/.rvm/gems/ruby-2.3.4/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (2.4ms)
+Completed 200 OK in 7ms (Views: 4.6ms)
+
+
