@@ -8,7 +8,7 @@ require 'rdoc/task'
 
 RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'JSONAPIServer'
+  rdoc.title    = 'JSONAPI::Server'
   rdoc.options << '--line-numbers'
   rdoc.rdoc_files.include('README.md')
   rdoc.rdoc_files.include('lib/**/*.rb')
