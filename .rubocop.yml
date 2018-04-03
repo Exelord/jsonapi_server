@@ -1,0 +1,34 @@
+AllCops:
+  TargetRubyVersion: 2.5
+  Exclude:
+   - 'spec/dummy/db/seeds.rb'
+   - 'spec/dummy/db/migrate/**'
+   - 'spec/dummy/bin/**'
+   - 'spec/dummy/db/schema.rb'
+   - 'spec/dummy/db/schema.rb'
+Documentation:
+  Enabled: false
+Metrics/LineLength:
+  Max: 125
+Metrics/ModuleLength:
+  Max: 150
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context']
+Layout/CaseIndentation:
+  Enabled: false
+Style/StructInheritance:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Rails/HasAndBelongsToMany:
+  Enabled: false
+Style/MixinGrouping:
+  Exclude:
+    - 'spec/**/*.rb'
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*.rb'
+Gemspec/RequiredRubyVersion:
+  Enabled: true
+Naming/PredicateName:
+  Enabled: false

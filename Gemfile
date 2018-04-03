@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 # Declare your gem's dependencies in jsonapi_server.gemspec.
@@ -14,7 +16,9 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.7'
+  gem 'factory_bot_rails'
+  gem 'ffaker'
   gem 'pry-rails'
+  gem 'rspec-rails', '~> 3.7'
+  gem 'rubocop'
 end
-

@@ -1,11 +1,13 @@
-module API
+# frozen_string_literal: true
+
+module Api
   module V1
     module Users
       class Attributes < JSONAPI::Server::Attributes
         attributes :name, :email
 
         def name=(value)
-          value.camelize
+          model.name = value.camelize
         end
 
         def name
