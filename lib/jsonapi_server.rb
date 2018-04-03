@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'jsonapi_server/engine'
 
 require_relative 'jsonapi_server/server'

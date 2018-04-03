@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module JSONAPI
   class Server
     attr_reader :server_options

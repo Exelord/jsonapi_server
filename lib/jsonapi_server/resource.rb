@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module JSONAPI
   class Server
     class Resource
       attr_reader :model, :context
 
-      def initialize(model, context = {})
-        @model = model
+      def initialize(model = nil, context = {})
+        @model = model || self.class.model_klass.new
         @context = context
       end
 
