@@ -12,25 +12,49 @@ module JSONAPI
 
     def all(resource_name, options = {})
       options = server_options.merge(options)
-
       resource_klass = resource_klass_for_name(resource_name)
-      models = resource_klass.records(options)
 
-      JSONAPI::Server::Resources.new(resource_klass, models, options[:context])
+      resource_klass.all(options)
     end
 
     def find(resource_name, id, options = {})
       options = server_options.merge(options)
-
       resource_klass = resource_klass_for_name(resource_name)
-      model = resource_klass.records(options[:context]).find(id)
 
-      resource_klass.new(model, options[:context])
+      resource_klass.find(id, options)
     end
 
-    def destroy
-      policy
-      resource.destroy
+    def create(resource_name, payload = {}, options = {})
+      options = server_options.merge(options)
+      resource_klass = resource_klass_for_name(resource_name)
+      params = deserialize_payload(resource_klass, payload)
+
+      resource_klass.create(params, options)
+    end
+
+    def update(resource_name, id, payload = {}, options = {})
+      options = server_options.merge(options)
+      resource_klass = resource_klass_for_name(resource_name)
+      params = deserialize_payload(resource_klass, payload)
+
+      resource_klass.update(id, params, options)
+    end
+
+    def destroy(resource_name, id, options = {})
+      options = server_options.merge(options)
+      resource_klass = resource_klass_for_name(resource_name)
+
+      resource_klass.destroy(id, options)
+    end
+
+    private
+
+    def deserialize_payload(resource_klass, payload = {})
+      JSONAPI::Server::Deserializer.new({
+        model_klass: resource_klass.model_klass,
+        attributes: resource_klass.attributes_klass.attrs,
+        relationships: resource_klass.relationships_klass.rels,
+      }).deserialize(payload)
     end
 
     def resource_klass_for_name(resource_name)
@@ -45,23 +69,3 @@ module JSONAPI
     end
   end
 end
-
-# def index
-#   render jsonapi: api_server.all('users', options)
-# end
-#
-# def show
-  # render jsonapi: api_server.find('users', id, options)
-# end
-#
-# def create
-#   render jsonapi: api_server.create('users', payload, options)
-# end
-#
-# def update
-#   render jsonapi: api_server.update('users', id, payload, options)
-# end
-#
-# def destroy
-#   render jsonapi: api_server.destroy('users', id, options)
-# end

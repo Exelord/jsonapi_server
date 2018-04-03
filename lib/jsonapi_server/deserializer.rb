@@ -1,41 +1,35 @@
 module JSONAPI
   class Server
     class Deserializer
-      attr_reader :resource_klass, :payload, :relationships_klass, :attributes_klass
+      attr_reader :model_klass, :attributes, :relationships
 
-      def initialize(resource_klass, payload = {})
-        @resource_klass = resource_klass
-        @payload = payload.deep_transform_keys(&:to_sym)
-        @attributes_klass = resource_klass.attributes_klass
-        @relationships_klass = resource_klass.relationships_klass
+      def initialize(model_klass:, attributes:, relationships:)
+        @model_klass = model_klass
+        @attributes = attributes
+        @relationships = relationships
       end
 
-      def id
-        @id ||= payload[:id].to_i
-      end
+      def deserialize(payload = {})
+        validate_payload(payload)
 
-      def type
-        @id ||= payload[:type]
-      end
-
-      def attributes
-        @attributes ||= deserialize_attributes
-      end
-
-      def relationships
-        @attributes ||= deserialize_relationships
+        {
+          attributes: deserialize_attributes(payload),
+          relationships: deserialize_relationships(payload),
+        }
       end
 
       private
 
-      def deserialize_attributes
-        attrs_keys = attributes_klass.attrs.map { |attr| attr[:key] }
-        attributes = payload[:attributes] || {}
-        attributes.select { |key| attrs_keys.include?(key) }
+      def validate_payload(payload)
+        # validate payload format
       end
 
-      def deserialize_relationships
-        #code
+      def deserialize_attributes(payload)
+        {}
+      end
+
+      def deserialize_relationships(payload)
+        {}
       end
     end
   end

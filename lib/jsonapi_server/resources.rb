@@ -12,7 +12,7 @@ module JSONAPI
       end
 
       def resources
-        @resources ||= models.map { |model| resource_klass.new(model) }
+        @resources ||= models.map { |model| resource_klass.new(model, context) }
       end
     end
   end

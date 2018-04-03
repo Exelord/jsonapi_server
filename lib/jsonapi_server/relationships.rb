@@ -3,34 +3,51 @@
 module JSONAPI
   class Server
     class Relationships
-      @@rels = []
+      attr_reader :model, :context
 
-      cattr_reader :rels
-
-      def self.has_many(key)
-        relationship(:has_many, key)
-      end
-
-      def self.belongs_to(key)
-        relationship(:belongs_to, key)
-      end
-
-      def self.relationship(kind, key)
-        define_method(key) do
-          model.send(key)
-        end
-
-        define_method("#{key}=") do |value|
-          model.send("#{key}=", value)
-        end
-
-        @@rels << { kind: kind, key: key.to_sym }
-      end
-
-      attr_reader :model
-
-      def initialize(model)
+      def initialize(model, context = {})
         @model = model
+        @context = context
+      end
+
+      def assign(relationships)
+        # assign relationships to model through generated set methods
+      end
+
+      class << self
+        attr_accessor :rels
+
+        def rels
+          @rels ||= []
+        end
+
+        def has_many(name, options = {})
+          relationship(:has_many, name, options)
+        end
+
+        def belongs_to(name, options = {})
+          relationship(:belongs_to, name, options)
+        end
+
+        def has_one(name, options = {})
+          relationship(:has_one, name, options)
+        end
+
+        def relationship(kind, name, options = {})
+          kind = kind.to_sym
+          name = name.to_sym
+          key = options[:key].to_sym || name
+
+          define_method(name) do
+            model.send(key)
+          end
+
+          define_method("#{name}=") do |value|
+            model.send("#{key}=", value)
+          end
+
+          rels << { kind: kind, name: name, key: key }
+        end
       end
     end
   end
