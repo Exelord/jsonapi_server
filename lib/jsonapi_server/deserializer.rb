@@ -3,7 +3,7 @@ module JSONAPI
     class Deserializer
       attr_reader :model_klass, :attributes, :relationships
 
-      def initialize(model_klass:, attributes:, relationships:)
+      def initialize(model_klass:, attributes: [], relationships: [])
         @model_klass = model_klass
         @attributes = attributes
         @relationships = relationships
