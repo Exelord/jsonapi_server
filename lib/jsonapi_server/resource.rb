@@ -19,28 +19,66 @@ module JSONAPI
       end
 
       def attributes
-        @attributes ||= self.class.attributes_klass.new(model)
+        @attributes ||= self.class.attributes_klass.new(model, context)
       end
 
       def relationships
-        @relationships ||= self.class.relationships_klass.new(model)
+        @relationships ||= self.class.relationships_klass.new(model, context)
+      end
+
+      def destroy
+        model.destroy
+      end
+
+      def save
+        model.save
+      end
+
+      def assign(params)
+        attributes.assign(params[:attributes])
+        relationships.assign(params[:relationships])
       end
 
       class << self
-        def records(options = {})
-          model_klass.all
+        def all(options = {})
+          JSONAPI::Server::Resources.new(self, records(options), options[:context])
         end
 
-        def resource_name
-          @resource_name ||= namespace_module.name.demodulize
+        def find(id, options = {})
+          model = records(options).find(id)
+          new(model, options[:context])
+        end
+
+        def create(params, options = {})
+          resource = new(nil, options[:context])
+          resource.assign(params)
+          resource.tap { |r| r.save }
+        end
+
+        def update(id, params, options = {})
+          resource = find(id, options)
+          resource.assign(params)
+          resource.tap { |r| r.save }
+        end
+
+        def destroy(id, options = {})
+          find(id, options).tap { |r| r.destroy }
+        end
+
+        def records(_options = {})
+          model_klass.all
         end
 
         def model_klass
           @model_klass ||= (@model_name || namespace_module.name.demodulize.singularize).constantize
         end
 
+        def resource_name
+          @resource_name ||= namespace_module.name.demodulize
+        end
+
         def namespace_module
-          @namespace_module ||= self.name.deconstantize.constantize
+          @namespace_module ||= name.deconstantize.constantize
         end
 
         def attributes_klass

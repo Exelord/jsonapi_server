@@ -3,40 +3,43 @@
 module JSONAPI
   class Server
     class Attributes
-      @@attrs = []
+      attr_reader :model, :context
 
-      cattr_reader :attrs
-
-      def self.attributes(*keys)
-        keys.each { |key| attribute(key) }
-      end
-
-      def self.attribute(key)
-        define_method(key) do
-          model.send(key)
-        end
-
-        define_method("#{key}=") do |value|
-          model.send("#{key}=", value)
-        end
-
-        @@attrs << { key: key.to_sym }
-      end
-
-      attr_reader :model
-
-      def initialize(model)
+      def initialize(model, context = {})
         @model = model
+        @context = context
       end
 
-      def to_h
-        attributes = {}
+      def assign(attributes)
+        # assign attributes to model through generated set methods
+      end
 
-        self.class.attrs.each do |attr|
-          attributes[attr[:key]] = send(attr[:key])
+      class << self
+        attr_accessor :attrs
+
+        def attrs
+          @attrs ||= []
         end
 
-        attributes
+        def attributes(*names)
+          names.each { |name| attribute(name) }
+        end
+
+        def attribute(name, options = {})
+          name = name.to_sym
+          key = options[:key].to_sym || name
+          type = options[:type]&.to_sym
+
+          define_method(name) do
+            model.send(key)
+          end
+
+          define_method("#{name}=") do |value|
+            model.send("#{key}=", value)
+          end
+
+          attrs << { name: name, key: key, type: type }
+        end
       end
     end
   end
