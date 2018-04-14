@@ -12,6 +12,8 @@ Metrics/LineLength:
   Max: 125
 Metrics/ModuleLength:
   Max: 150
+Metrics/MethodLength:
+  Max: 20
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context']
 Layout/CaseIndentation:
