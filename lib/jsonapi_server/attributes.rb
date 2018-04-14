@@ -11,14 +11,14 @@ module JSONAPI
       end
 
       def assign(attributes)
-        # assign attributes to model through generated set methods
+        attributes.each do |name, value|
+          send("#{name}=", value)
+        end
       end
 
       class << self
-        attr_accessor :attrs
-
         def attrs
-          @attrs ||= []
+          @attrs ||= {}
         end
 
         def attributes(*names)
@@ -27,7 +27,7 @@ module JSONAPI
 
         def attribute(name, options = {})
           name = name.to_sym
-          key = options[:key].to_sym || name
+          key = options[:key]&.to_sym || name
           type = options[:type]&.to_sym
 
           define_method(name) do
@@ -38,7 +38,7 @@ module JSONAPI
             model.send("#{key}=", value)
           end
 
-          attrs << { name: name, key: key, type: type }
+          attrs[name] = { name: name, key: key, type: type }
         end
       end
     end

@@ -11,14 +11,14 @@ module JSONAPI
       end
 
       def assign(relationships)
-        # assign relationships to model through generated set methods
+        relationships.each do |name, value|
+          send("#{name}=", value)
+        end
       end
 
       class << self
-        attr_accessor :rels
-
         def rels
-          @rels ||= []
+          @rels ||= {}
         end
 
         def has_many(name, options = {})
@@ -36,17 +36,21 @@ module JSONAPI
         def relationship(kind, name, options = {})
           kind = kind.to_sym
           name = name.to_sym
-          key = options[:key].to_sym || name
+          key = options[:key]&.to_sym || name
 
           define_method(name) do
             model.send(key)
           end
 
           define_method("#{name}=") do |value|
-            model.send("#{key}=", value)
+            if kind == :belongs_to
+              reflection = model.class.reflections[key.to_s]
+
+              model.send("#{reflection.foreign_key}=", value[:id])
+            end
           end
 
-          rels << { kind: kind, name: name, key: key }
+          rels[name] = { name: name, kind: kind, key: key }
         end
       end
     end

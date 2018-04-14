@@ -50,11 +50,12 @@ module JSONAPI
     private
 
     def deserialize_payload(resource_klass, payload = {})
-      JSONAPI::Server::Deserializer.new({
-        model_klass: resource_klass.model_klass,
-        attributes: resource_klass.attributes_klass.attrs,
-        relationships: resource_klass.relationships_klass.rels,
-      }).deserialize(payload)
+      JSONAPI::Server::Deserializer.new(
+        types: {}, # TODO: return hash of types with mapping classes eg: { integer: JSONAPI::Server::Types::Integer }
+        resources: {}, # TODO: return hash of resources with model names, eg: { user: { model_name: 'User' } }
+        attributes: resource_klass.attributes,
+        relationships: resource_klass.relationships
+      ).deserialize(payload)
     end
 
     def resource_klass_for_name(resource_name)

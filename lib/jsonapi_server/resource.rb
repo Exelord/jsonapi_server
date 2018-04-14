@@ -52,17 +52,17 @@ module JSONAPI
         def create(params, options = {})
           resource = new(nil, options[:context])
           resource.assign(params)
-          resource.tap { |r| r.save }
+          resource.tap(&:save)
         end
 
         def update(id, params, options = {})
           resource = find(id, options)
           resource.assign(params)
-          resource.tap { |r| r.save }
+          resource.tap(&:save)
         end
 
         def destroy(id, options = {})
-          find(id, options).tap { |r| r.destroy }
+          find(id, options).tap(&:destroy)
         end
 
         def records(_options = {})
@@ -75,6 +75,14 @@ module JSONAPI
 
         def resource_name
           @resource_name ||= namespace_module.name.demodulize
+        end
+
+        def attributes
+          @attributes ||= attributes_klass.attrs
+        end
+
+        def relationships
+          @relationships ||= relationships_klass.rels
         end
 
         def namespace_module
