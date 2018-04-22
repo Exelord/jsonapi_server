@@ -84,12 +84,13 @@ module JSONAPI
         {}.tap do |rels|
           payload[:data].fetch(:relationships, {}).each do |name, value|
             next if relationships[name].nil?
-            data = value[:data]
+            relationship_data = value[:data]
 
-            rels[name] = if data.is_a?(Array)
-                           data.map { |relationship| deserialize_resource(relationship) }
+            rels[name] = if relationship_data.is_a?(Array)
+                           relationship_data.map { |relationship| deserialize_resource(relationship) }
                          else
-                           deserialize_relationship(data)
+                           normalize_payload(relationship_data)
+                           deserialize_resource(relationship_data)
                          end
           end
         end
