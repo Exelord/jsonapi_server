@@ -30,6 +30,14 @@ module JSONAPI
         model.destroy
       end
 
+      def create(params)
+        assign(params) && save
+      end
+
+      def update(params)
+        assign(params) && save
+      end
+
       def save
         model.save
       end
@@ -51,14 +59,12 @@ module JSONAPI
 
         def create(params, options = {})
           resource = new(nil, options[:context])
-          resource.assign(params)
-          resource.tap(&:save)
+          resource.create(params) && resource
         end
 
         def update(id, params, options = {})
           resource = find(id, options)
-          resource.assign(params)
-          resource.tap(&:save)
+          resource.update(params) && resource
         end
 
         def destroy(id, options = {})
